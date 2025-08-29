@@ -6,9 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "predeploy": "npm run build",
-    "deploy": "touch ./out/.nojekyll && gh-pages -d out --nojekyll"
+    "lint": "eslint"
   },
   "dependencies": {
     "next": "15.5.2",
