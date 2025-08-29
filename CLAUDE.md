@@ -4,14 +4,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a feature phone demo website built with Next.js, specifically designed to support low-resolution displays:
+This is a feature phone demo website built with Next.js for the 2025 Meichu Hackathon, specifically designed to support low-resolution displays:
 - QVGA: 240x320 pixels
 - QQVGA: 160x120 pixels
 
 ## Development Commands
 
-- `npm run dev` - Start development server (http://localhost:3000)
-- `npm run build` - Build for production
+- `npm run dev` - Start development server
+- `npm run build` - Build and export static files to `out/` directory
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
 
@@ -19,31 +19,51 @@ This is a feature phone demo website built with Next.js, specifically designed t
 
 ### Key Components
 
-- `app/components/Navigation.tsx` - Fixed bottom navigation bar showing left/right button functions
-- `app/layout.tsx` - Root layout with Navigation component included
-- `app/page.tsx` - Welcome page with title and description
-- `app/globals.css` - Global styles with feature phone responsive breakpoints
+- `app/components/Navigation.tsx` - Fixed bottom navigation bar with L/R/Center buttons
+- `app/components/Keypad.tsx` - Visual directional keypad (↑↓←→) 
+- `app/components/KeyboardHandler.tsx` - Global keyboard event management
+- `app/components/NavigationContext.tsx` - React context for button highlight states
+- `app/components/ClientLayout.tsx` - Client-side layout wrapper
+- `app/layout.tsx` - Root layout with NavigationProvider
+- `app/page.tsx` - Welcome page with title, description, and keypad
+- `app/globals.css` - Feature phone responsive breakpoints
+
+### Keyboard Navigation System
+
+The website implements comprehensive keyboard navigation with visual feedback:
+
+**Navigation Bar (Bottom):**
+- Escape key → "L: SL" (left button)
+- Enter key → "Enter" (center button) 
+- F12 key → "R: SR" (right button)
+
+**Directional Keypad (Center):**
+- Arrow Up → ↑ button
+- Arrow Down → ↓ button  
+- Arrow Left → ← button
+- Arrow Right → → button
+
+All keys prevent default browser behavior and provide 200ms yellow highlight feedback.
 
 ### Feature Phone Optimization
-
-The website uses responsive design optimized for extremely small screens:
 
 - CSS breakpoints at 320px, 240px, and 160px widths
 - Font sizes scale down for smaller screens (12px, 10px, 8px)
 - Container max-width constraints for different resolutions
-- Fixed navigation bar always visible at bottom
-- Minimal, centered layout design
+- Cross-shaped keypad layout for directional navigation
+- Minimal, centered design optimized for tiny screens
 
-### Navigation System
+### Static Export Configuration
 
-Every page includes a fixed bottom navigation bar that shows:
-- Left button function (currently "Back")
-- Right button function (currently "Select")
+- Configured for GitHub Pages deployment with repository base path
+- Conditional `basePath` and `assetPrefix` for production builds
+- Automatic deployment via GitHub Actions workflow
+- Static files generated in `out/` directory
 
-This navigation paradigm is essential for feature phone UX where users rely on physical left/right soft keys.
+## Deployment
 
-## File Structure
-
-- `app/` - Next.js App Router directory
-- `app/components/` - Reusable React components
-- `public/` - Static assets
+The project uses GitHub Actions (`.github/workflows/deploy.yml`) for automatic deployment:
+- Triggers on pushes to main branch
+- Builds static export with production environment
+- Deploys to `gh-pages` branch automatically
+- Repository must have Pages configured to deploy from `gh-pages` branch
