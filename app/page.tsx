@@ -1,3 +1,5 @@
+import Keypad from './components/Keypad';
+
 export default function Home() {
   return (
     <div className="max-w-xs mx-auto p-2 min-h-screen flex flex-col justify-center items-center text-center">
@@ -8,6 +10,7 @@ export default function Home() {
         <p className="text-sm text-gray-500 leading-tight">
           It&apos;s a demo page.
         </p>
+        <Keypad />
       </main>
     </div>
   );

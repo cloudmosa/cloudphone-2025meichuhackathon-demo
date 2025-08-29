@@ -4,26 +4,54 @@ import { useEffect } from 'react';
 import { useNavigation } from './NavigationContext';
 
 export default function KeyboardHandler() {
-  const { highlightLeft, highlightRight, highlightCenter } = useNavigation();
+  const { 
+    highlightLeft, 
+    highlightRight, 
+    highlightCenter,
+    highlightUp,
+    highlightDown,
+    highlightLeftKey,
+    highlightRightKey
+  } = useNavigation();
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' || event.key === 'F12' || event.key === 'Enter') {
+      const targetKeys = ['Escape', 'F12', 'Enter', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+      
+      if (targetKeys.includes(event.key)) {
         event.preventDefault();
         event.stopPropagation();
         
-        if (event.key === 'Escape') {
-          highlightLeft();
-        } else if (event.key === 'F12') {
-          highlightRight();
-        } else if (event.key === 'Enter') {
-          highlightCenter();
+        switch (event.key) {
+          case 'Escape':
+            highlightLeft();
+            break;
+          case 'F12':
+            highlightRight();
+            break;
+          case 'Enter':
+            highlightCenter();
+            break;
+          case 'ArrowUp':
+            highlightUp();
+            break;
+          case 'ArrowDown':
+            highlightDown();
+            break;
+          case 'ArrowLeft':
+            highlightLeftKey();
+            break;
+          case 'ArrowRight':
+            highlightRightKey();
+            break;
         }
       }
     };
 
     const handleKeyUp = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' || event.key === 'F12' || event.key === 'Enter') {
+      const targetKeys = ['Escape', 'F12', 'Enter', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+      
+      if (targetKeys.includes(event.key)) {
         event.preventDefault();
         event.stopPropagation();
       }
@@ -36,7 +64,7 @@ export default function KeyboardHandler() {
       document.removeEventListener('keydown', handleKeyDown, true);
       document.removeEventListener('keyup', handleKeyUp, true);
     };
-  }, [highlightLeft, highlightRight, highlightCenter]);
+  }, [highlightLeft, highlightRight, highlightCenter, highlightUp, highlightDown, highlightLeftKey, highlightRightKey]);
 
   return null;
 }
