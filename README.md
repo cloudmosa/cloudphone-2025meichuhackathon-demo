@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Feature Phone Demo
+
+A demo website optimized for feature phones with ultra-low resolution displays, built with Next.js and designed for QVGA (240×320) and QQVGA (160×120) screens.
+
+*Created for the 2025 Meichu Hackathon.*
+
+## Features
+
+- **Ultra-low resolution support**: Optimized for QVGA (240×320) and QQVGA (160×120) displays
+- **Feature phone navigation**: Keyboard mapping for Escape (left), Enter (center), and Backspace (right) keys
+- **Visual feedback**: Navigation buttons highlight when corresponding keys are pressed
+- **Responsive design**: Font sizes and layouts automatically adjust for different screen sizes
+- **Static export ready**: Pre-configured for GitHub Pages deployment
 
 ## Getting Started
 
-First, run the development server:
+### Development
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the website.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Building for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Build and export static files:
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+Static files will be generated in the `out/` directory.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Navigation Controls
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Key | Action | Visual Indicator |
+|-----|--------|------------------|
+| Escape | Left button (SL) | Highlights L: SL |
+| Enter | Center button | Highlights Enter |
+| Backspace | Right button (SR) | Highlights R: SR |
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `app/page.tsx` - Main welcome page
+- `app/components/Navigation.tsx` - Fixed bottom navigation bar
+- `app/components/KeyboardHandler.tsx` - Keyboard event management
+- `app/components/NavigationContext.tsx` - State management for button highlights
+- `app/components/ClientLayout.tsx` - Client-side layout wrapper
+- `app/globals.css` - Feature phone responsive breakpoints
