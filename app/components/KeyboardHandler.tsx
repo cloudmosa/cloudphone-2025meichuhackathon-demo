@@ -8,13 +8,13 @@ export default function KeyboardHandler() {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' || event.key === 'Backspace' || event.key === 'Enter') {
+      if (event.key === 'Escape' || event.key === 'F12' || event.key === 'Enter') {
         event.preventDefault();
         event.stopPropagation();
         
         if (event.key === 'Escape') {
           highlightLeft();
-        } else if (event.key === 'Backspace') {
+        } else if (event.key === 'F12') {
           highlightRight();
         } else if (event.key === 'Enter') {
           highlightCenter();
@@ -23,7 +23,7 @@ export default function KeyboardHandler() {
     };
 
     const handleKeyUp = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' || event.key === 'Backspace' || event.key === 'Enter') {
+      if (event.key === 'Escape' || event.key === 'F12' || event.key === 'Enter') {
         event.preventDefault();
         event.stopPropagation();
       }
